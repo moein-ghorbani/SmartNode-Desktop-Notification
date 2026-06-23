@@ -87,9 +87,8 @@ def send_smartnode_alert(level, title, message, extra_fields=None):
 # Trigger Example
 send_smartnode_alert("CRITICAL", "RAID Error", "Drive 2 in Array failed smart status!")
 
-
+---
 ### 2. Node.js Integration Example
-```node.js
 
 const axios = require('axios');
 
