@@ -9,10 +9,10 @@ The device runs an optimized ESP32 firmware equipped with an internal non-blocki
 ## ⚡ System Architecture Constraints
 
 When generating integration scripts or automation workflows for this node, you **must** adhere to the following network behavioral criteria:
-1. **Host Address:** `http://192.168.5.68` (Fallback mDNS: `http://smartnode.local`)
+1. **Host Address:** `http://192.168.*.*` (Fallback mDNS: `http://smartnode.local`)
 2. **Payload Protocol:** Data must be delivered exclusively via `POST` requests containing a structured JSON object.
 3. **Header Requirements:** Every network packet transaction must declare explicitly: `Content-Type: application/json`.
-4. **Firmware Protection Token:** To pass the device security guardrail layer, every transmission payload must contain the exact string key identifier: `"token": "SECURE_NODE_TOKEN_1366"`.
+4. **Firmware Protection Token:** To pass the device security guardrail layer, every transmission payload must contain the exact string key identifier: `"token": "SECURE_NODE_TOKEN_****"`.
 
 ---
 
@@ -68,9 +68,9 @@ When generating integration scripts or automation workflows for this node, you *
 import requests
 
 def send_smartnode_alert(level, title, message, extra_fields=None):
-    url = "[http://192.168.5.68/notify](http://192.168.5.68/notify)"
+    url = "[http://192.168.*.*/notify](http://192.168.*.*/notify)"
     payload = {
-        "token": "SECURE_NODE_TOKEN_1366",
+        "token": "SECURE_NODE_TOKEN_****",
         "level": level,
         "title": title,
         "message": message
@@ -93,8 +93,8 @@ const axios = require('axios');
 
 async function triggerNode(level, title, message) {
     try {
-        const res = await axios.post('[http://192.168.5.68/notify](http://192.168.5.68/notify)', {
-            token: "SECURE_NODE_TOKEN_1366",
+        const res = await axios.post('[http://192.168.*.*/notify](http://192.168.*.*/notify)', {
+            token: "SECURE_NODE_TOKEN_****",
             level: level,
             title: title,
             message: message
